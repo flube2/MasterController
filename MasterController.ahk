@@ -36,11 +36,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory. NOTE: This MUST be overridden when launching certain programs such as Firefox.
 #SingleInstance Force  ; Do you really want 5 instances of the same script running and causing weird issues? Do you? Do you REALLY?
 
-; // Get User Profile Paths And Input
-;^+g::
-EnvGet, hdrive, Homedrive
-EnvGet, hpath, Homepath
-EnvGet, LocalAppData, LocalAppData
+
 
 
 
@@ -51,8 +47,18 @@ EnvGet, LocalAppData, LocalAppData
 
 
 ; // Initialize
-password = 
-InputBox, password, Enter Password,Enter your most commonly used password.`n   (Your input will be hidden)`n`nHolding "Control" and "Shift" while tapping the "U" key will enter this password., hide
+   ; // Get User Profile Paths And Input
+   EnvGet, hdrive, Homedrive
+   EnvGet, hpath, Homepath
+   EnvGet, LocalAppData, LocalAppData
+   ;password = defaultPassword
+   InputBox, password, Enter Password,Enter your most commonly used password.`n   (Your input will be hidden)`n`nHolding "Control" and "Shift" while tapping the "U" key will enter this password., hide
+   if (password = "")
+   {
+   password = defaultPassword
+   }
+
+
 
 
 
