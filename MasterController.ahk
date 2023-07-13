@@ -41,11 +41,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory. NOTE: Th
 EnvGet, hdrive, Homedrive
 EnvGet, hpath, Homepath
 EnvGet, LocalAppData, LocalAppData
-InputBox, password, Enter Password, (your input will be hidden), hide
+
+
+
 
 
 
 ; // BEGIN CODE
+
+
+; // Initialize
+password = 
+InputBox, password, Enter Password,Enter your most commonly used password.`n   (Your input will be hidden)`n`nHolding "Control" and "Shift" while tapping the "U" key will enter this password., hide
+
 
 
 ; /////////////////////////////////////////
@@ -65,10 +73,8 @@ Send, ^+f
 return
 
 
-; // Launch standard work elements ('F' = Functional): Outlook, Firefox opens SIM queue, MCMs
+; // Launches commonly used non-communication apps/links
 ^+f:: ; (Ctrl+Shift+'F')
-igq1tcorpqueue := "https://t.corp.amazon.com/issues?q=%7B%22AND%22%3A%7B%22status%22%3A%7B%22OR%22%3A%5B%22Assigned%22%2C%7B%22OR%22%3A%5B%22Researching%22%2C%7B%22OR%22%3A%5B%22Work%20In%20Progress%22%2C%22Pending%22%5D%7D%5D%7D%5D%7D%2C%22AND%22%3A%7B%22assignedGroup%22%3A%22OTS-Support%22%2C%22AND%22%3A%7B%22country%22%3Anull%2C%22buildingId%22%3A%22IGQ1%22%7D%7D%7D%7D"
-run, %A_ProgramFiles%\Mozilla Firefox\firefox.exe %igq1tcorpqueue%, %A_ProgramFiles%\Mozilla Firefox
 run, %A_ProgramFiles%\Mozilla Firefox\firefox.exe https://sn.opstechit.amazon.dev/now/sow/list/params/list-id/3dbe93373ceb651056c38a99402245e4/tiny-id/06be53373ceb651056c38a994022450d, %A_ProgramFiles%\Mozilla Firefox
 run, %A_ProgramFiles%\Mozilla Firefox\firefox.exe mcm.amazon.com, %A_ProgramFiles%\Mozilla Firefox
 run, %A_ProgramFiles%\Microsoft Office\root\Office16\OUTLOOK.EXE, %A_ProgramFiles%\Microsoft Office\root\Office16
