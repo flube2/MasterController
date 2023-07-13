@@ -36,12 +36,14 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory. NOTE: This MUST be overridden when launching certain programs such as Firefox.
 #SingleInstance Force  ; Do you really want 5 instances of the same script running and causing weird issues? Do you? Do you REALLY?
 
-; // Get User Profile Paths
+; // Get User Profile Paths And Input
 ;^+g::
 EnvGet, hdrive, Homedrive
 EnvGet, hpath, Homepath
 EnvGet, LocalAppData, LocalAppData
-;run, %A_ProgramFiles%\Mozilla Firefox\firefox.exe https://www.noaa.gov, %A_ProgramFiles%\Mozilla Firefox
+InputBox, password, Enter Password, (your input will be hidden), hide
+
+
 
 ; // BEGIN CODE
 
@@ -90,7 +92,7 @@ return
 
 ; // Enter Password
 ^+u:: ; (Ctrl+Shift+'U')
-SendRaw, PASSWORD
+Send, %password%
 return
 
 ; // Enter Admin or Secondary Password
