@@ -27,13 +27,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory. NOTE: Th
 
 ; // Initialize
    ; // Get User Profile Paths And Input
-   EnvGet, hdrive, Homedrive                         ;; necessary??
+   EnvGet, hdrive, Homedrive                        
    EnvGet, hpath, Homepath
    EnvGet, LocalAppData, LocalAppData
    
    ; // Define Globals
-;   vPassword = defaultPassword                      ;;;;;;
-;   vAdminpassword =  administrator                  ;;;;;;
    ff = %A_ProgramFIles%\Mozilla Firefox\firefox.exe
    chr = chrome.exe
    edge = microsoft-edge:
@@ -51,10 +49,28 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory. NOTE: Th
    comma = ,
 
    
-   
+
+
+;PromptGui Gui:New ;(,Have you diabled startup apps??,)
+;PromptGui, Add, Text,, "Make sure disabled all unnecessary startup apps prior to running this script. If you don’t know how to do this select yes and click the Next button to see my; YouTube video on how to do it."
+;PromptGui, Add, Button, gYoutube ,Watch YouTube Video
+;PromptGui, Add, Button, yp h20 w70 Default gNext, Next
+;PromptGui, Show, AutoSize, 
+
+
+
+;Youtube:
+;Run, %ff% https://youtu.be/UB_240QIV-k
+;Return
+
+;Next:
+;PromptGui, Submit, Hide*/
+
+
+
    
 Gui, SetupMenu:New
-Gui, Add, Text,, NOTE FROM DEVELOPER: BEFORE RUNNING DISABLE STARTUP APPS.
+;Gui, Add, Text,, NOTE FROM DEVELOPER: BEFORE RUNNING DISABLE STARTUP APPS.
 Gui, Add, Text,, Enter your most commonly used password.`n`nHolding "Control" and "Shift" while tapping the "U" key will enter this password.
 Gui, Add, Edit, Password* r1 w250 vPassword, password
 Gui, Add, Text,, `n`nEnter Admin or secondary password.`n`nHolding "Control" and "Shift" while tapping the "I" key will enter this password.
@@ -90,10 +106,6 @@ browserPath = %chr%
 if browser = 3 
 browserPath = %edge% 
 
-;Loop, Parse, SocialMediaSites, |
-;   MsgBox, Item number %A_Index% is %A_LoopField%.
-
-;MsgBox %password% %adminPassword% %browserPath%
 
 
 ; //////////////////////////////// END INTERACTIVE CODE ////////////////////////////////
@@ -105,7 +117,7 @@ browserPath = %edge%
 FileAppend, %A_ScriptDir%\MasterController.ahk
 
 
-header = /*`nName: Master Controller (Public Release v2.0.0)`nPurpose (Short Version): Increase Efficiency Of Daily Workflow Via Automation, Promote Logical Laziness`nAuthor: Frank Lubek, OpsTechIT Support`nAssociate II @ IGQ1, Amazon Fulfillment`nMost Recent Update: 07/15/2023`n*/`n`n
+header = /*`nName: Master Controller (Public Release v2.0.0)`nPurpose (Short Version): Increase Efficiency Of Daily Workflow Via Automation, Promote Logical Laziness`nAuthor: Frank Lubek, OpsTechSolutions Support`nAssociate II @ IGQ1, Amazon Fulfillment`nMost Recent Update: 07/15/2023`n*/`n`n
 FileAppend %header%, %newScriptPath%
 
 
