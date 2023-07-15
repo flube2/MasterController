@@ -18,6 +18,16 @@ Install AutoHotKey (https://www.autohotkey.com/)
 Download Script (https://github.com/flube2/MasterController/releases/)
 Recommended to disable startup apps as well (https://youtu.be/UB_240QIV-k)
 
+
+
+**Install**
+- Run the Install.ahk file with AutoHotKey installed
+- Enter information into the menu (select web browser, popular links, enter custom website URLs, etc)
+- The script will create another script called MasterController.ahk that when launched contains all of user-defined functionality
+- The script adds MasterController.ahk to startup apps
+
+
+
 **Problem**
 - There are many startup processes that most have no knowledge of that tend to unnecessarily consume resources which can significantly delay boot time and cause seemingly random issues post-boot such as excessive CPU/RAM consumption, crashes, etc. 
 
