@@ -1,3 +1,11 @@
+/*
+Name: Master Controller (Public Release v2.0.0)
+Purpose (Short Version): Increase Efficiency Of Daily Workflow Via Automation, Promote Logical Laziness
+Author: Frank Lubek, OpsTechIT Support
+Associate II @ IGQ1, Amazon Fulfillment
+Most Recent Update: 07/15/2023
+*/
+
 
 
 
@@ -5,7 +13,7 @@
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory. NOTE: This MUST be overridden when launching certain programs such as Firefox.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory. NOTE: This MUST be overridden when launching certain programs.
 #SingleInstance Force  ; Do you really want 5 instances of the same script running and causing weird issues? Do you? Do you REALLY?
 
 
@@ -24,8 +32,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory. NOTE: Th
    EnvGet, LocalAppData, LocalAppData
    
    ; // Define Globals
-   vPassword = defaultPassword                      ;;;;;;
-   vAdminpassword =  administrator                  ;;;;;;
+;   vPassword = defaultPassword                      ;;;;;;
+;   vAdminpassword =  administrator                  ;;;;;;
    ff = %A_ProgramFIles%\Mozilla Firefox\firefox.exe
    chr = chrome.exe
    edge = microsoft-edge:
@@ -97,7 +105,7 @@ browserPath = %edge%
 FileAppend, %A_ScriptDir%\MasterController.ahk
 
 
-header = /*`nName: Master Controller`nPurpose (Short Version): Increase Efficiency Of Daily Workflow Via Automation, Promote Logical Laziness`nAuthor: Frank Lubek, OpsTechIT Support`nAssociate II @ IGQ1, Amazon Fulfillment`nMost Recent Update: 07/15/2023`n*/`n`n
+header = /*`nName: Master Controller (Public Release v2.0.0)`nPurpose (Short Version): Increase Efficiency Of Daily Workflow Via Automation, Promote Logical Laziness`nAuthor: Frank Lubek, OpsTechIT Support`nAssociate II @ IGQ1, Amazon Fulfillment`nMost Recent Update: 07/15/2023`n*/`n`n
 FileAppend %header%, %newScriptPath%
 
 
@@ -109,28 +117,33 @@ FileAppend %toWrite%, %newScriptPath%
 
 
 ; // Diagnostics
-toWrite = ^+d::`nSend, ^+{Esc}`n
+toWrite = `n^+d::`nSend, ^+{Esc}`n
 FileAppend %toWrite%, %newScriptPath%
-FileAppend Return`n, %newScriptPath%
+FileAppend Return, %newScriptPath%
+FileAppend `n`n, %newScriptPath%
 
 
 
 ; // Enter Password
-toWrite = ^+u::`nSendRaw, %password%`n`n
+toWrite = `n^+u::`nSendRaw, %password%
 FileAppend %toWrite%, %newScriptPath%
-FileAppend Return`n, %newScriptPath%
+FileAppend `n, %newScriptPath%
+FileAppend Return, %newScriptPath%
+FileAppend `n`n, %newScriptPath%
 
 
 
 ; // Enter Admin or Secondary Password
-toWrite = ^+i::`nSendRaw, %adminPassword%`n`n
+toWrite = `n^+i::`nSendRaw, %adminPassword%
 FileAppend %toWrite%, %newScriptPath%
-FileAppend Return`n, %newScriptPath%
+FileAppend `n, %newScriptPath%
+FileAppend Return, %newScriptPath%
+FileAppend `n`n, %newScriptPath%
 
 
 
 ; // Open Social Media Links
-toWrite = ^+m::`n
+toWrite = `n^+m::`n
 FileAppend %toWrite%, %newScriptPath%
 Loop, Parse, SocialMediaSites, |
    Switch A_Index
@@ -140,31 +153,33 @@ Loop, Parse, SocialMediaSites, |
    Case 3: FileAppend Run%comma% %browserPath% %instagram%`n, %newScriptPath%
    Case 4: FileAppend Run%comma% %browserPath% %snapchat%`n, %newScriptPath%
    } 
-   
-FileAppend Return`n, %newScriptPath%
+
+FileAppend Return, %newScriptPath%
+FileAppend `n`n, %newScriptPath%
    
    
    
 ; // Open Communication Links
-toWrite = ^+c::`n
+toWrite = `n^+c::`n
 FileAppend %toWrite%, %newScriptPath%
 Loop, Parse, CommPlatforms, |
    Switch A_Index
    {
-   Case 1: FileAppend Run%comma% %browserPath% %outlook%`n, %newScriptPath%
+   Case 1: FileAppend Run%comma% %outlook%`n, %newScriptPath%
    Case 2: FileAppend Run%comma% %browserPath% %gmail%`n, %newScriptPath%
    Case 3: FileAppend Run%comma% %browserPath% %whatsapp%`n, %newScriptPath%
    Case 4: FileAppend Run%comma% %browserPath% %hangouts%`n, %newScriptPath%
    Case 5: FileAppend Run%comma% %browserPath% %messenger%`n, %newScriptPath%
-   Case 6: FileAppend Run%comma% %browserPath% %discord%`n, %newScriptPath%
+   Case 6: FileAppend Run%comma% %discord%`n, %newScriptPath%
    } 
-   FileAppend Return`n, %newScriptPath%
-   FileAppend `n, %newScriptPath%
+
+   FileAppend Return, %newScriptPath%
+   FileAppend `n`n, %newScriptPath%
    
    
    
 ; // Open Custom URLs
-toWrite = ^+f::`n
+toWrite = `n^+f::`n
 FileAppend %toWrite%, %newScriptPath%
 if (UserDefinedURLs1 >= 1 && UserDefinedURLs1 != "")
    FileAppend Run%comma% %browserPath% %UserDefinedURLs1%`n, %newScriptPath%
@@ -174,7 +189,9 @@ if (UserDefinedURLs3 >= 1 && UserDefinedURLs3 != "")
    FileAppend Run%comma% %browserPath% %UserDefinedURLs3%`n, %newScriptPath%
 If (UserDefinedURLs4 >= 1 && UserDefinedURLs4 != "")
    FileAppend Run%comma% %browserPath% %UserDefinedURLs4%`n, %newScriptPath%
-FileAppend Return`n, %newScriptPath%
+   
+FileAppend Return, %newScriptPath%
+FileAppend `n`n, %newScriptPath%
 
 
 ; // Set MasterController.ahk to run at startup
@@ -182,7 +199,7 @@ FileCreateShortcut, %newScriptPath%, C:\Users\lubef\AppData\Roaming\Microsoft\Wi
 
 
 
-; ///////////////////////////// BEGIN SCRIPT CREATOR CODE /////////////////////////////
+; ////////////////////////////// END SCRIPT CREATOR CODE //////////////////////////////
 
 return
 
