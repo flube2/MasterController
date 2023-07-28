@@ -69,19 +69,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory. NOTE: Th
    
 Gui, SetupMenu:New
 ;Gui, Add, Text,, NOTE FROM DEVELOPER: BEFORE RUNNING DISABLE STARTUP APPS.
-Gui, Add, Text,, Enter your most commonly used password.`n`nHolding "Control" and "Shift" while tapping the "U" key will enter this password.
+Gui, Add, Text,, Enter your most commonly used password.`n`nHolding "Control" and "Shift" while tapping the "P" key will enter this password.
 Gui, Add, Edit, Password* r1 w250 vPassword, password
-Gui, Add, Text,, `n`nEnter Admin or secondary password.`n`nHolding "Control" and "Shift" while tapping the "I" key will enter this password.
+Gui, Add, Text,, `n`nEnter Admin or secondary password.`n`nHolding "Control" and "Shift" while tapping the "O" key will enter this password.
 Gui, Add, Edit, Password* r1 w250 vAdminpassword, adminpassword
 Gui, Add, Text,, `n`nSelect your preferred web browser.
 Gui, Add, Radio, vbrowser Checked, Firefox
 Gui, Add, Radio, , Chrome
 Gui, Add, Radio, , Edge
-Gui, Add, Text,, `n`nSelect social media sites you use.`n`nHolding "Control" and "Shift" while tapping the "M" key will open your selection.
+Gui, Add, Text,, `n`nSelect social media sites you use.`n`nHolding "Control" and "Shift" while tapping the "S" key will open your selection.
 Gui, Add, ListBox, r4 multi w250 vSocialMediaSites, Facebook|Twitter|Instagram|Snapchat
 Gui, Add, Text,, `n`nSelect communications platforms that you use.`n`nHolding "Control" and "Shift" while tapping the "C" key will open your selection.
 Gui, Add, ListBox, r6 multi w250 vCommPlatforms, Outlook|Gmail|WhatsApp|Hangouts|Messenger|Discord
-Gui, Add, Text,, `n`nEnter any other URLs you may want. `n`nHolding "Control" and "Shift" while tapping the "F" key will open the links.
+Gui, Add, Text,, `n`nEnter any other URLs you may want. `n`nHolding "Control" and "Shift" while tapping the "U" key will open the links.
 Gui, Add, Edit, r1 w250 vUserDefinedURLs1
 Gui, Add, Edit, r1 w250 vUserDefinedURLs2
 Gui, Add, Edit, r1 w250 vUserDefinedURLs3
@@ -142,7 +142,7 @@ FileAppend `n`n, %newScriptPath%
 
 
 ; // Enter Password
-toWrite = `n^+u::`nSendRaw, %password%
+toWrite = `n^+p::`nSendRaw, %password%
 FileAppend %toWrite%, %newScriptPath%
 FileAppend `n, %newScriptPath%
 FileAppend Return, %newScriptPath%
@@ -151,7 +151,7 @@ FileAppend `n`n, %newScriptPath%
 
 
 ; // Enter Admin or Secondary Password
-toWrite = `n^+i::`nSendRaw, %adminPassword%
+toWrite = `n^+o::`nSendRaw, %adminPassword%
 FileAppend %toWrite%, %newScriptPath%
 FileAppend `n, %newScriptPath%
 FileAppend Return, %newScriptPath%
@@ -160,7 +160,7 @@ FileAppend `n`n, %newScriptPath%
 
 
 ; // Open Social Media Links
-toWrite = `n^+m::`n
+toWrite = `n^+s::`n
 FileAppend %toWrite%, %newScriptPath%
 Loop, Parse, SocialMediaSites, |
    Switch A_Index
@@ -196,7 +196,7 @@ Loop, Parse, CommPlatforms, |
    
    
 ; // Open Custom URLs
-toWrite = `n^+f::`n
+toWrite = `n^+u::`n
 FileAppend %toWrite%, %newScriptPath%
 if (UserDefinedURLs1 >= 1 && UserDefinedURLs1 != "")
    FileAppend Run%comma% %browserPath% %UserDefinedURLs1%`n, %newScriptPath%
