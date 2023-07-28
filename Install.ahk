@@ -3,7 +3,7 @@ Name: Master Controller (Public Release v2.0.0)
 Purpose (Short Version): Increase Efficiency Of Daily Workflow Via Automation, Promote Logical Laziness
 Author: Frank Lubek, OpsTechIT Support
 Associate II @ IGQ1, Amazon Fulfillment
-Most Recent Update: 07/15/2023
+Most Recent Update: 07/28/2023
 */
 
 
@@ -77,9 +77,9 @@ Gui, Add, Text,, `n`nSelect your preferred web browser.
 Gui, Add, Radio, vbrowser Checked, Firefox
 Gui, Add, Radio, , Chrome
 Gui, Add, Radio, , Edge
-Gui, Add, Text,, `n`nSelect social media sites you use.
+Gui, Add, Text,, `n`nSelect social media sites you use.`n`nHolding "Control" and "Shift" while tapping the "M" key will open your selection.
 Gui, Add, ListBox, r4 multi w250 vSocialMediaSites, Facebook|Twitter|Instagram|Snapchat
-Gui, Add, Text,, `n`nSelect communications platforms that you use.
+Gui, Add, Text,, `n`nSelect communications platforms that you use.`n`nHolding "Control" and "Shift" while tapping the "C" key will open your selection.
 Gui, Add, ListBox, r6 multi w250 vCommPlatforms, Outlook|Gmail|WhatsApp|Hangouts|Messenger|Discord
 Gui, Add, Text,, `n`nEnter any other URLs you may want. `n`nHolding "Control" and "Shift" while tapping the "F" key will open the links.
 Gui, Add, Edit, r1 w250 vUserDefinedURLs1
@@ -113,8 +113,8 @@ browserPath = %edge%
 
 
 ; // If file already exists and this script is ran again, it'll append and error on duplicates so delete and create new (overwrite/replace)
-if(FileExist(%newScriptPath%)){
-FileDelete(%newScriptPath%)
+if(FileExist(newScriptPath)){
+FileDelete, %newScriptPath%
 }
 
 
@@ -122,7 +122,7 @@ FileDelete(%newScriptPath%)
 FileAppend, %A_ScriptDir%\MasterController.ahk
 
 
-header = /*`nName: Master Controller (Public Release v2.0.0)`nPurpose (Short Version): Increase Efficiency Of Daily Workflow Via Automation, Promote Logical Laziness`nAuthor: Frank Lubek, OpsTechSolutions Support`nAssociate II @ IGQ1, Amazon Fulfillment`nMost Recent Update: 07/15/2023`n*/`n`n
+header = /*`nName: Master Controller (Public Release v2.0.0)`nPurpose (Short Version): Increase Efficiency Of Daily Workflow Via Automation, Promote Logical Laziness`nAuthor: Frank Lubek, OpsTechSolutions Support`nAssociate II @ IGQ1, Amazon Fulfillment`nMost Recent Update: 07/28/2023`n*/`n`n
 FileAppend %header%, %newScriptPath%
 
 
@@ -190,7 +190,7 @@ Loop, Parse, CommPlatforms, |
    Case 6: FileAppend Run%comma% %discord%`n, %newScriptPath%
    } 
 
-   FileAppend Return, %newScriptPath%
+   FileAppend Return, %newScriptPath% ; Add return stmt and 2 new lines to script
    FileAppend `n`n, %newScriptPath%
    
    
