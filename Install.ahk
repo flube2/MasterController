@@ -50,21 +50,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory. NOTE: Th
 
    
 
-
-;PromptGui Gui:New ;(,Have you diabled startup apps??,)
-;PromptGui, Add, Text,, "Make sure disabled all unnecessary startup apps prior to running this script. If you don’t know how to do this select yes and click the Next button to see my; YouTube video on how to do it."
-;PromptGui, Add, Button, gYoutube ,Watch YouTube Video
-;PromptGui, Add, Button, yp h20 w70 Default gNext, Next
-;PromptGui, Show, AutoSize, 
-
+;Gui, Prompt: New, +HwndMain +Resize, Prompt
+;Gui, Prompt: Add, Text,, "Make sure disabled all unnecessary startup apps prior to running this script. If you don’t know how to do this click the button to button to see my YouTube video on how to do it."
+;Gui, Prompt: Add, Button, gYoutube ,Watch YouTube Video
+;Gui, Prompt: Add, Button, yp h20 w70 Default gNext, Next
+;Gui, Prompt: Show, AutoSize, 
 
 
 ;Youtube:
 ;Run, %ff% https://youtu.be/UB_240QIV-k
-;Return
+  
 
 ;Next:
-;PromptGui, Submit, Hide*/
+;Gui, Prompt:Destroy
 
 
 
@@ -112,6 +110,13 @@ browserPath = %edge%
 
 
 ; ///////////////////////////// BEGIN SCRIPT CREATOR CODE /////////////////////////////
+
+
+; // If file already exists and this script is ran again, it'll append and error on duplicates so delete and create new (overwrite/replace)
+if(FileExist(%newScriptPath%)){
+FileDelete(%newScriptPath%)
+}
+
 
 ; // Create Empty Script
 FileAppend, %A_ScriptDir%\MasterController.ahk
